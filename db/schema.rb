@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_161915) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_180026) do
   create_table "beer_geeks", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -30,6 +30,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_161915) do
     t.text "description"
     t.string "brand"
     t.float "cl"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "brand_id", null: false
+    t.index ["brand_id"], name: "index_beers_on_brand_id"
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,6 +70,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_161915) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "beers", "brands"
   add_foreign_key "notes", "beer_geeks"
   add_foreign_key "notes", "beers"
 end
