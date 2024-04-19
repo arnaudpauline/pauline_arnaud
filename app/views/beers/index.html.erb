@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Beers</h1>
+
+<div id="beers">
+  <% @beers.each do |beer| %>
+    <%= render beer %>
+    <p>
+      <%= link_to "Show this beer", beer %>
+    </p>
+
+    <p>Users who have rated this beer:</p>
+    <ul>
+      <% beer.beer_geeks.each do |beer_geek| %>
+        <li><%= beer_geek.name %></li>
+      <% end %>
+    </ul>
+
+    <p>Notes for this beer:</p>
+    <ul>
+      <% beer.notes.each do |note| %>
+        <li><%= "#{note.beer_geek.name} rated #{note.beer.name} with a score of #{note.value}" %></li>
+      <% end %>
+    </ul>
+
+  <% end %>
+
+</div>
+
+<%= link_to "New beer", new_beer_path %>

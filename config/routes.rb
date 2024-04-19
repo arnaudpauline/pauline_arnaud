@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :beer_geeks
+  devise_for :users
+  resources :beers
   resources :trucs
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -7,5 +10,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "posts#index"
 end
